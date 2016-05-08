@@ -1,23 +1,29 @@
 #!/bin/bash
 umask 000
 
-chown -R sickrage:sickrage /config
-chown -R sickrage:sickrage /library
-chown -R sickrage:sickrage /downloads
+userName=sickrage
+groupName=sickrage
 
 # Modify user ID by env USER_ID
 if [ -z "$USER_ID" ]; then
-  echo "User ID modification not requested"
+  echo "User modification not requested"
 else
-  usermod -u $USER_ID sickrage
+  deluser sickrage
+  adduser -D -u $USER_ID -s /bin/bash sickrage
 fi
 
 # Modify group ID by env GROUP_ID
-if [ -z "$GROUP_ID" ]; then
-  echo "Group ID modification not requested"
+if [ -z "$GROUP_ID" ] || [ "$GROUP_ID" = "$USER_ID" ]; then
+  echo "Group modification not needed"
 else
-    groupmod -g $GROUP_ID sickrage
+    addgroup -g $GROUP_ID sickrage_group
+    addgroup sickrage sickrage_group
+    groupName=sickrage_group
 fi
+
+chown -R ${userName}:${groupName} /config
+chown -R ${userName}:${groupName} /library
+chown -R ${userName}:${groupName} /downloads
 
 if [ -f /config/config-base.ini ] && [ ! -f /config/config-real.ini ]
 then
@@ -26,7 +32,7 @@ then
 fi
 
 rm -rf /opt/sickrage
-git clone --depth 1 http://github.com/SickRage/SickRage.git /opt/sickrage
+git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage
 chown -R sickrage:sickrage /opt/sickrage
 
 echo "Running sickrage"
