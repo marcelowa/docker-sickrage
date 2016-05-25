@@ -2,6 +2,7 @@ FROM alpine:3.3
 MAINTAINER Marcelo Waisman <marcelo.waisman@gmail.com>
 
 RUN apk --update add \
+    unrar \
     bash \
     python \
     git \
