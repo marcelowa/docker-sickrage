@@ -1,10 +1,11 @@
-FROM alpine:3.3
+FROM alpine:3.6
 MAINTAINER Marcelo Waisman <marcelo.waisman@gmail.com>
 
 RUN apk --update add \
     unrar \
     bash \
     python \
+    py-pip \
     git \
     py-lxml \
     && adduser -D -s /bin/bash sickrage \
@@ -17,4 +18,4 @@ VOLUME /config /downloads /library
 COPY sickrage.sh /usr/bin/
 COPY run.sh /usr/bin/
 
-ENTRYPOINT ["sickrage.sh"]
+CMD "sickrage.sh"
