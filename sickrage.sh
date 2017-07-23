@@ -32,7 +32,8 @@ then
 fi
 
 rm -rf /opt/sickrage
-sleep 4 && git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage
+#sleep 4 && git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage
+sileep 4 && git clone --depth 1 https://github.com/sickragetv/sickrage.git /opt/sickrage
 chown -R sickrage:sickrage /opt/sickrage
 
 echo "Running sickrage"
