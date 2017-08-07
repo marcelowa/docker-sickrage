@@ -32,9 +32,9 @@ then
 fi
 
 rm -rf /opt/sickrage
-#sleep 4 && git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage
+sleep 4 && git clone --depth 1 https://github.com/SickRage/SickRage.git /opt/sickrage
 #sleep 4 && git clone --depth 1 https://bitbucket.org/bigspringsgroup/sickrage.git /opt/sickrage
-sleep 4 && git clone --depth 1 https://donna.devices.wvvw.me/sickrage/sickrage.git /opt/sickrage
+#sleep 4 && git clone --depth 1 https://donna.devices.wvvw.me/sickrage/sickrage.git /opt/sickrage
 chown -R sickrage:sickrage /opt/sickrage
 #pip install -r /opt/sickrage/requirements.txt
 
