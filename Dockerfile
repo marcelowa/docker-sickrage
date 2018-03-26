@@ -2,6 +2,7 @@ FROM alpine:3.6
 MAINTAINER Marcelo Waisman <marcelo.waisman@gmail.com>
 
 RUN apk --update add \
+    nodejs \
     unrar \
     bash \
     python \
